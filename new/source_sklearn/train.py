@@ -29,9 +29,12 @@ def model_fn(model_dir):
 
     # Determine the device and construct the model.
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = SimpleNet(model_info['input_dim'], 
-                      model_info['hidden_dim'], 
-                      model_info['output_dim'])
+#     model = SimpleNet(model_info['input_dim'], 
+#                       model_info['hidden_dim'], 
+#                       model_info['output_dim'])
+    model = BinaryClassifier(model_info['input_dim'], 
+                             model_info['hidden_dim'], 
+                             model_info['output_dim']).to(device)
 
     # Load the stored model parameters.
     model_path = os.path.join(model_dir, 'model.pth')
@@ -165,6 +168,7 @@ if __name__ == '__main__':
     # To get params from the parser, call args.argument_name, ex. args.epochs or ards.hidden_dim
     # Don't forget to move your model .to(device) to move to GPU , if appropriate
     model = SimpleNet(args.input_dim, args.hidden_dim, args.output_dim).to(device)
+#     model = SimpleNet(args.input_dim, args.output_dim).to(device)    
     
     # Given: save the parameters used to construct the model
     save_model_params(model, args.model_dir)

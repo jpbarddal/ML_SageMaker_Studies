@@ -7,6 +7,7 @@ class SimpleNet(nn.Module):
     
     ## TODO: Define the init function
     def __init__(self, input_dim, hidden_dim, output_dim):
+#     def __init__(self, input_dim, output_dim):
         '''Defines layers of a neural network.
            :param input_dim: Number of input features
            :param hidden_dim: Size of hidden layer(s)
